@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Nargis\\Desktop\\RecipeFinder\\RecipeFinder.csproj",
+      "projectUniqueName": "C:\\Users\\Nargis\\Desktop\\RecipeFinder\\RecipeFinderProject\\RecipeFinder.csproj",
       "projectName": "RecipeFinder",
-      "projectPath": "C:\\Users\\Nargis\\Desktop\\RecipeFinder\\RecipeFinder.csproj",
+      "projectPath": "C:\\Users\\Nargis\\Desktop\\RecipeFinder\\RecipeFinderProject\\RecipeFinder.csproj",
       "packagesPath": "C:\\Users\\Nargis\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Nargis\\Desktop\\RecipeFinder\\obj\\",
+      "outputPath": "C:\\Users\\Nargis\\Desktop\\RecipeFinder\\RecipeFinderProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
