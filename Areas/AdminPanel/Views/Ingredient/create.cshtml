@@ -1,0 +1,29 @@
+﻿@using RecipeProject.Areas.AdminPanel.ViewModels.Ingredient
+@model CreateIngredientVM
+
+@{
+    ViewData["Title"] = "Create Ingredient";
+}
+
+<h1>Create Ingredient</h1>
+
+<h4>Ingredient</h4>
+<hr />
+<form action="/AdminPanel/Ingredient/Create" method="post">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <!-- Create düyməsi - formu göndərir -->
+    <button type="submit" class="btn btn-peach">
+        Create
+    </button>
+</form>
+
+<!-- Back to list keçidi - formu göndərməyəcək, sadəcə keçid -->
+<a href="/AdminPanel/Ingredient/Index" class="btn btn-light">
+    Back to list
+</a>

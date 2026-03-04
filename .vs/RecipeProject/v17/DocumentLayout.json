@@ -1,0 +1,113 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|c:\\users\\nargis\\desktop\\recipeproject\\views\\recipes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|solutionrelative:views\\recipes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|c:\\users\\nargis\\desktop\\recipeproject\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|c:\\users\\nargis\\desktop\\recipeproject\\controllers\\recipescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|solutionrelative:controllers\\recipescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|c:\\users\\nargis\\desktop\\recipeproject\\wwwroot\\recipe-cards.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|solutionrelative:wwwroot\\recipe-cards.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|c:\\users\\nargis\\desktop\\recipeproject\\viewmodels\\recipesvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|solutionrelative:viewmodels\\recipesvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-03T13:44:44.188Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "recipe-cards.css",
+              "DocumentMoniker": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\wwwroot\\recipe-cards.css",
+              "RelativeDocumentMoniker": "wwwroot\\recipe-cards.css",
+              "ToolTip": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\wwwroot\\recipe-cards.css",
+              "RelativeToolTip": "wwwroot\\recipe-cards.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-03-03T13:44:27.679Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RecipesVM.cs",
+              "DocumentMoniker": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\ViewModels\\RecipesVM.cs",
+              "RelativeDocumentMoniker": "ViewModels\\RecipesVM.cs",
+              "ToolTip": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\ViewModels\\RecipesVM.cs",
+              "RelativeToolTip": "ViewModels\\RecipesVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T12:53:45.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\Views\\Recipes\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Recipes\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\Views\\Recipes\\Index.cshtml",
+              "RelativeToolTip": "Views\\Recipes\\Index.cshtml",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAewFYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-03T12:48:46.41Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RecipesController.cs",
+              "DocumentMoniker": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\Controllers\\RecipesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\RecipesController.cs",
+              "ToolTip": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\Controllers\\RecipesController.cs",
+              "RelativeToolTip": "Controllers\\RecipesController.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAYwE8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T12:48:33.318Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

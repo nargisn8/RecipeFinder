@@ -1,0 +1,405 @@
+﻿/* Fonts are loaded in layout */
+:root {
+    --peach: #e68a6f;
+    --dark: #2f2f2f;
+    --muted: #cfcfcf;
+    --cta: #ea9a7f;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background: var(--peach);
+    font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+    color: #fff;
+    /*Footer always at bottom */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* IMPORTANT: @RenderBody() should be inside <main> in layout */
+main {
+    flex: 1;
+}
+
+/* Top header */
+.landing-header {
+    max-width: 1100px;
+    margin: 12px auto 0;
+}
+
+.landing-title {
+    font-weight: 600;
+    letter-spacing: 3px;
+    font-size: 28px;
+}
+
+.landing-subtitle {
+    margin-top: 6px;
+    opacity: .95;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+/* Hero wrapper */
+.hero-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 8px 20px 24px;
+    position: relative;
+    z-index: 10;
+}
+
+/* === OPTION: Overlap effect ON ===
+   If you want the card to overlap footer like in your screenshot, keep -60px.
+   Footer will still stay at the bottom because body/main is flex now.
+*/
+.hero-card {
+    width: min(1100px, 96%);
+    background: var(--dark);
+    border-radius: 4px;
+    padding: 34px;
+    box-shadow: 0 28px 40px rgba(0,0,0,0.36);
+    box-sizing: border-box;
+    overflow: visible;
+    position: relative;
+    z-index: 30;
+    margin-bottom: -60px; /* overlap ON */
+}
+
+/* Nav */
+.hero-nav .logo {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.nav-links li {
+    margin-left: 22px;
+}
+
+.nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 15px;
+}
+
+    .nav-links a:hover {
+        color: #fff;
+    }
+
+/* Hero body */
+.hero-body {
+    gap: 30px;
+    align-items: center;
+    display: flex;
+    min-height: 360px;
+}
+
+.hero-left {
+    flex: 1;
+    padding-right: 12px;
+}
+
+.hero-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 56px;
+    margin: 8px 0 18px;
+    line-height: 0.95;
+    color: #fff;
+}
+
+.hero-desc {
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 28px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.btn-cta {
+    display: inline-block;
+    background: var(--cta);
+    color: #fff;
+    padding: 12px 22px;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.08);
+}
+
+.icons-small .icon {
+    font-size: 20px;
+    opacity: .95;
+    margin-right: 14px;
+}
+
+/* Right circle image */
+.hero-right {
+    width: 44%;
+    max-width: 440px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Circle image */
+.circle-image {
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+    box-shadow: -28px 28px 48px rgba(0,0,0,0.36);
+    z-index: 40;
+}
+
+    .circle-image img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 60% center;
+        transform: scale(1.12);
+        display: block;
+        z-index: 60;
+    }
+
+    /* Decorative peach arc */
+    .circle-image::after {
+        content: '';
+        position: absolute;
+        right: -18%;
+        top: -10%;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: var(--peach);
+        transform: rotate(10deg);
+        box-shadow: 8px 12px 30px rgba(0,0,0,0.18);
+        z-index: 50;
+    }
+
+/* Footer */
+footer.bg-dark {
+    background: var(--dark) !important;
+    color: #fff;
+    position: relative;
+    z-index: 5;
+    padding-top: 80px; /* space for overlap */
+    padding-bottom: 24px;
+    box-shadow: inset 0 6px 0 rgba(0,0,0,0.08);
+    border-top: 0;
+    text-align: center;
+    /* IMPORTANT: keep footer at bottom */
+    margin-top: auto;
+}
+
+    footer.bg-dark p {
+        margin: 0;
+        color: var(--muted);
+    }
+
+/* Responsive */
+@media (max-width: 980px) {
+    .hero-body {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        gap: 22px;
+    }
+
+    .hero-right {
+        width: 100%;
+        max-width: none;
+    }
+
+    .circle-image {
+        width: 320px;
+        height: 320px;
+        margin: 0 auto;
+    }
+
+    .hero-title {
+        font-size: 44px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    /* reduce overlap on smaller screens */
+    .hero-card {
+        margin-bottom: -40px;
+    }
+
+    footer.bg-dark {
+        padding-top: 60px;
+    }
+}
+
+@media (max-width: 520px) {
+    .landing-title {
+        font-size: 20px;
+    }
+
+    .landing-subtitle {
+        font-size: 13px;
+    }
+
+    .hero-title {
+        font-size: 34px;
+    }
+
+    .circle-image {
+        width: 240px;
+        height: 240px;
+    }
+
+    .hero-card {
+        margin-bottom: -24px;
+    }
+
+    footer.bg-dark {
+        padding-top: 40px;
+    }
+}
+/* ==============================
+   FIX: Footer always at bottom
+   Put this at the VERY END of admin.css
+   ============================== */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Bu class Layoutda <main class="page-content"> olmalıdır */
+.page-content {
+    flex: 1;
+}
+
+
+/* Hero buttons */
+.btn-peach {
+    background: var(--cta);
+    color: #fff;
+    border: none;
+    padding: 12px 26px;
+    font-weight: 600;
+    border-radius: 20px;
+    transition: 0.3s;
+    pointer-events: all; /* Bu, kliklənməyə imkan verir */
+}
+
+    .btn-peach:hover {
+        background: #e68a6f;
+        color: #fff;
+    }
+
+.hero-actions .btn {
+    min-width: 170px;
+}
+
+.hero-left {
+    flex: 1;
+    padding-right: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* düymələri aşağı itələyir */
+.hero-actions {
+    margin-top: auto;
+}
+
+.ingredients-table,
+.ingredients-table tr,
+.ingredients-table td,
+.ingredients-table th {
+    border: none !important;
+}
+
+.ingredients-table {
+    border-collapse: separate !important;
+    border-spacing: 0 12px;
+}
+
+.admin-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+/* actions sütunları dar olsun */
+.col-action {
+    width: 80px;
+    text-align: center;
+}
+
+/* sətirlər arası məsafə */
+.ingredients-table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+    .ingredients-table tbody td {
+        color: #000 !important;
+    }
+
+        .ingredients-table tbody td:first-child {
+            border-radius: 10px 0 0 10px;
+        }
+
+        .ingredients-table tbody td:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+
+    .ingredients-table tbody tr:hover td {
+        background: #ea9a7f;
+    }
+
+    .ingredients-table thead th {
+        color: #000 !important;
+        font-weight: 600;
+    }
+
+.white-container {
+    background-color: white;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.page-wrapper {
+    flex: 1;
+}
+
+/* Image Upload */
+.image-upload-area {
+    border: 2px dashed #ccc;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .image-upload-area:hover {
+        border-color: var(--peach);
+        background: rgba(234, 154, 127, 0.05);
+    }
+
+.image-preview img {
+    max-width: 300px;
+    border-radius: 10px;
+    margin-top: 15px;
+}

@@ -1,0 +1,63 @@
+﻿@using RecipeProject.Areas.AdminPanel.ViewModels.Ingredient
+@model List<GetIngredientVM>
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Ingredients";
+}
+
+<div class="admin-page">
+    <div class="page-top">
+        <h2 class="page-title">Ingredients</h2>
+
+        <a href="/AdminPanel/Ingredient/Create" class="btn btn-peach">
+            Create
+        </a>
+    </div>
+    <br />
+    <div class="admin-card table-responsive">
+        <table class="table table-borderless align-middle ingredients-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th class="col-action">Details</th>
+                    <th class="col-action">Update</th>
+                    <th class="col-action">Delete</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+
+                            <td class="text-center">
+                                <a href="/AdminPanel/Ingredient/Detail/@item.Id" class="table-link"><i class="fa-solid fa-eye"></i></a>
+                                
+                            </td>
+
+                            <td class="text-center">
+                                <a href="/AdminPanel/Ingredient/Update/@item.Id" class="table-link"><i class="fa-solid fa-pen"></i></a>
+                                
+                            </td>
+
+                            <td class="text-center">
+                                <a href="/AdminPanel/Ingredient/Delete/@item.Id" class="table-link danger"><i class="fa-solid fa-trash"></i></a>
+                                
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="empty-cell">No ingredients yet.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

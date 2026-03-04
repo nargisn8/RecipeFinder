@@ -1,0 +1,54 @@
+﻿@using RecipeProject.Areas.AdminPanel.ViewModels.Recipe
+@model DetailRecipeVM
+
+@{
+    ViewData["Title"] = "Recipe Detail";
+}
+
+<h1>Recipe Detail</h1>
+<hr />
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-3">Name</dt>
+        <dd class="col-sm-9">@Model.Name</dd>
+
+        <dt class="col-sm-3">Description</dt>
+        <dd class="col-sm-9">@Model.Description</dd>
+
+        <dt class="col-sm-3">Diet Type</dt>
+        <dd class="col-sm-9">@Model.DietType</dd>
+
+        <dt class="col-sm-3">Cuisine</dt>
+        <dd class="col-sm-9">@Model.Cuisine</dd>
+
+        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        {
+            <dt class="col-sm-3">Image</dt>
+            <dd class="col-sm-9">
+                <img src="@Model.ImageUrl" alt="@Model.Name" style="max-width:300px;" />
+            </dd>
+        }
+    </dl>
+</div>
+
+<h4>Ingredients</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ingredient</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ing in Model.Ingredients)
+        {
+            <tr>
+                <td>@ing.IngredientName</td>
+                <td>@ing.Quantity</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/AdminPanel/Recipe/Index" class="btn btn-light">Back to list</a>

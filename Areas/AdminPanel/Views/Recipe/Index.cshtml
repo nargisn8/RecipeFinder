@@ -1,0 +1,50 @@
+﻿@using RecipeProject.Areas.AdminPanel.ViewModels.Recipe
+@model List<GetRecipeVM>
+
+@{
+    ViewData["Title"] = "Recipes";
+}
+
+<h1>Recipes</h1>
+
+<a href="/AdminPanel/Recipe/Create" class="btn btn-peach mb-3">Create</a>
+
+<div class="white-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Diet Type</th>
+                <th>Cuisine</th>
+                <th>Details</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.DietType</td>
+                    <td>@item.Cuisine</td>
+                    <td>
+                        <a href="/AdminPanel/Recipe/Detail/@item.Id">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/AdminPanel/Recipe/Update/@item.Id">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/AdminPanel/Recipe/Delete/@item.Id">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

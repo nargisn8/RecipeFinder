@@ -1,0 +1,132 @@
+﻿@using RecipeProject.Areas.AdminPanel.ViewModels.Recipe
+@model CreateRecipeVM
+
+@{
+    ViewData["Title"] = "Create Recipe";
+}
+
+<h1>Create Recipe</h1>
+<hr />
+
+<div class="white-container">
+    <form action="/AdminPanel/Recipe/Create" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+
+        <div class="form-group mb-3">
+            <label for="Name" style="color: #333; font-weight: 600;">Name</label>
+            <input type="text" name="Name" id="Name" class="form-control" placeholder="Enter recipe name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="Description" style="color: #333; font-weight: 600;">Description</label>
+            <textarea name="Description" id="Description" class="form-control" rows="4" placeholder="Enter description"></textarea>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="DietType" style="color: #333; font-weight: 600;">Diet Type</label>
+            <select name="DietType" id="DietType" class="form-control">
+                <option value="None">None</option>
+                <option value="Vegan">Vegan</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Keto">Keto</option>
+                <option value="Gluten-Free">Gluten-Free</option>
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="Cuisine" style="color: #333; font-weight: 600;">Cuisine</label>
+            <input type="text" name="Cuisine" id="Cuisine" class="form-control" placeholder="Enter cuisine (e.g. Italian)" />
+        </div>
+
+        <div class="form-group mb-3">
+            <label style="color: #333; font-weight: 600;">Image</label>
+            <div class="image-upload-area" onclick="document.getElementById('Image').click()">
+                <i class="fa-solid fa-cloud-arrow-up fa-3x" style="color: var(--peach);"></i>
+                <p class="mt-2 mb-0" style="color: #999;">Click to select image</p>
+                <input type="file" name="Image" id="Image" accept="image/*"
+                       style="display: none;" onchange="previewImage(event)" />
+            </div>
+            <div class="image-preview" id="imagePreview"></div>
+        </div>
+
+        <h4 style="color: #333; font-weight: 600;">Ingredients</h4>
+        <div id="ingredients-container">
+            @for (int i = 0; i < Model.AllIngredients.Count; i++)
+            {
+                <div class="row mb-2">
+                    <div class="col-1">
+                        <input type="checkbox"
+                               class="ingredient-check"
+                               value="@Model.AllIngredients[i].Id"
+                               data-index="@i" />
+                    </div>
+                    <div class="col-4">
+                        <label style="color: #333;">@Model.AllIngredients[i].Name</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="text"
+                               class="form-control quantity-input"
+                               placeholder="Quantity (e.g. 200g)"
+                               disabled
+                               data-index="@i" />
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div id="selected-ingredients"></div>
+
+        <button type="submit" class="btn btn-peach mt-3" onclick="prepareSubmit()">
+            Create
+        </button>
+    </form>
+</div>
+
+<a href="/AdminPanel/Recipe/Index" class="btn btn-light mt-2">Back to list</a>
+
+<script>
+    function previewImage(event) {
+        var preview = document.getElementById('imagePreview');
+        var file = event.target.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                preview.innerHTML = '<img src="' + e.target.result + '" alt="Preview" />';
+            };
+            reader.readAsDataURL(file);
+            document.querySelector('.image-upload-area p').textContent = file.name;
+        }
+    }
+
+    document.querySelectorAll('.ingredient-check').forEach(function (cb) {
+        cb.addEventListener('change', function () {
+            var idx = this.getAttribute('data-index');
+            var qtyInput = document.querySelector('.quantity-input[data-index="' + idx + '"]');
+            qtyInput.disabled = !this.checked;
+            if (!this.checked) qtyInput.value = '';
+        });
+    });
+
+    function prepareSubmit() {
+        var container = document.getElementById('selected-ingredients');
+        container.innerHTML = '';
+
+        document.querySelectorAll('.ingredient-check:checked').forEach(function (cb, i) {
+            var idx = cb.getAttribute('data-index');
+            var qty = document.querySelector('.quantity-input[data-index="' + idx + '"]').value;
+
+            var hiddenId = document.createElement('input');
+            hiddenId.type = 'hidden';
+            hiddenId.name = 'IngredientIds[' + i + ']';
+            hiddenId.value = cb.value;
+            container.appendChild(hiddenId);
+
+            var hiddenQty = document.createElement('input');
+            hiddenQty.type = 'hidden';
+            hiddenQty.name = 'Quantities[' + i + ']';
+            hiddenQty.value = qty;
+            container.appendChild(hiddenQty);
+        });
+    }
+</script>

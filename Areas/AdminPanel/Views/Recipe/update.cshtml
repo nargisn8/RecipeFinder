@@ -1,0 +1,157 @@
+﻿@using RecipeProject.Areas.AdminPanel.ViewModels.Recipe
+@model UpdateRecipeVM
+
+@{
+    ViewData["Title"] = "Update Recipe";
+}
+
+<h1>Update Recipe</h1>
+<hr />
+
+<div class="white-container">
+    <form action="/AdminPanel/Recipe/Update/@Model.Id" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" name="Id" value="@Model.Id" />
+
+        <div class="form-group mb-3">
+            <label for="Name">Name</label>
+            <input type="text" name="Name" id="Name" class="form-control" value="@Model.Name" />
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="Description">Description</label>
+            <textarea name="Description" id="Description" class="form-control" rows="4">@Model.Description</textarea>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="DietType">Diet Type</label>
+            <select name="DietType" id="DietType" class="form-control">
+                @{
+                    var dietTypes = new[] { "None", "Vegan", "Vegetarian", "Keto", "Gluten-Free" };
+                }
+                @foreach (var diet in dietTypes)
+                {
+                    if (Model.DietType == diet)
+                    {
+                        <option value="@diet" selected>@diet</option>
+                    }
+                    else
+                    {
+                        <option value="@diet">@diet</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="Cuisine">Cuisine</label>
+            <input type="text" name="Cuisine" id="Cuisine" class="form-control" value="@Model.Cuisine" />
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Image</label>
+
+            @if (!string.IsNullOrEmpty(Model.ExistingImageUrl))
+            {
+                <div class="mb-2">
+                    <p style="color: #333;">Current image:</p>
+                    <img src="@Model.ExistingImageUrl" alt="Current" style="max-width: 300px; border-radius: 10px;" />
+                </div>
+            }
+
+            <div class="image-upload-area" onclick="document.getElementById('Image').click()">
+                <i class="fa-solid fa-cloud-arrow-up fa-3x" style="color: var(--peach);"></i>
+                <p class="mt-2 mb-0" style="color: #999;">Click to change image</p>
+                <input type="file" name="Image" id="Image" accept="image/*"
+                       style="display: none;" onchange="previewImage(event)" />
+            </div>
+            <div class="image-preview" id="imagePreview"></div>
+        </div>
+
+        <h4 style="color: #333;">Ingredients</h4>
+        <div id="ingredients-container">
+            @for (int i = 0; i < Model.AllIngredients.Count; i++)
+            {
+                var isSelected = Model.IngredientIds.Contains(Model.AllIngredients[i].Id);
+                var qtyIndex = isSelected ? Model.IngredientIds.IndexOf(Model.AllIngredients[i].Id) : -1;
+                var qty = qtyIndex >= 0 && qtyIndex < Model.Quantities.Count ? Model.Quantities[qtyIndex] : "";
+
+                <div class="row mb-2">
+                    <div class="col-1">
+                        <input type="checkbox"
+                               class="ingredient-check"
+                               value="@Model.AllIngredients[i].Id"
+                               data-index="@i"
+                               @(isSelected ? "checked" : "") />
+                    </div>
+                    <div class="col-4">
+                        <label style="color: #333;">@Model.AllIngredients[i].Name</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="text"
+                               class="form-control quantity-input"
+                               placeholder="Quantity (e.g. 200g)"
+                               value="@qty"
+                               data-index="@i"
+                               @(isSelected ? "" : "disabled") />
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div id="selected-ingredients"></div>
+
+        <button type="submit" class="btn btn-warning mt-3" onclick="prepareSubmit()">
+            Update
+        </button>
+    </form>
+</div>
+
+<a href="/AdminPanel/Recipe/Index" class="btn btn-light mt-2">Back to list</a>
+
+<script>
+    function previewImage(event) {
+        var preview = document.getElementById('imagePreview');
+        var file = event.target.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                preview.innerHTML = '<img src="' + e.target.result + '" alt="Preview" />';
+            };
+            reader.readAsDataURL(file);
+            document.querySelector('.image-upload-area p').textContent = file.name;
+        }
+    }
+
+    document.querySelectorAll('.ingredient-check').forEach(function (cb) {
+        cb.addEventListener('change', function () {
+            var idx = this.getAttribute('data-index');
+            var qtyInput = document.querySelector('.quantity-input[data-index="' + idx + '"]');
+            qtyInput.disabled = !this.checked;
+            if (!this.checked) qtyInput.value = '';
+        });
+    });
+
+    function prepareSubmit() {
+        var container = document.getElementById('selected-ingredients');
+        container.innerHTML = '';
+
+        document.querySelectorAll('.ingredient-check:checked').forEach(function (cb, i) {
+            var idx = cb.getAttribute('data-index');
+            var qty = document.querySelector('.quantity-input[data-index="' + idx + '"]').value;
+
+            var hiddenId = document.createElement('input');
+            hiddenId.type = 'hidden';
+            hiddenId.name = 'IngredientIds[' + i + ']';
+            hiddenId.value = cb.value;
+            container.appendChild(hiddenId);
+
+            var hiddenQty = document.createElement('input');
+            hiddenQty.type = 'hidden';
+            hiddenQty.name = 'Quantities[' + i + ']';
+            hiddenQty.value = qty;
+            container.appendChild(hiddenQty);
+        });
+    }
+</script>
