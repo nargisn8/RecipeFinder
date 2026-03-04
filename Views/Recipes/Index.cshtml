@@ -1,6 +1,20 @@
 ﻿@using RecipeProject.ViewModels
 @model RecipesVM
 
+@{
+    /* Kart sayına görə sütun ölçüsünü təyin et */
+    var hasFilter = !string.IsNullOrWhiteSpace(Model.Search)
+                 || !string.IsNullOrWhiteSpace(Model.Cuisine)
+                 || !string.IsNullOrWhiteSpace(Model.DietType)
+                 || Model.IngredientId.HasValue;
+
+    var recipeCount = Model.Recipes.Count;
+
+    /* Filter aktiv + az nəticə varsa böyük kartlar, yoxsa standart 3-lü grid */
+    string colClass = hasFilter && recipeCount <= 2
+        ? "col-12 col-sm-6"
+        : "col-12 col-sm-6 col-lg-4";
+}
 
 <!-- ##### Breadcumb Area Start ##### -->
 <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
@@ -53,13 +67,13 @@
         </div>
     </div>
 
- 
+
 
     <!-- Receipe Content Area -->
     <div class="receipe-content-area">
         <div class="container">
 
-           
+
             <div class="row">
                 <!-- ##### Best Receipe Area Start ##### -->
                 <section class="best-receipe-area">
@@ -68,10 +82,10 @@
                             <!-- Single Best Receipe Area -->
                             @foreach (var recipe in Model.Recipes)
                             {
-                                <div class="col-12 col-sm-6 col-lg-4">
+                                <div class="@colClass">
                                     <div class="single-best-receipe-area mb-30">
 
-                                        <img src="~/img/bg-img/@recipe.ImageUrl" alt="@recipe.Name">
+                                        <img src="@recipe.ImageUrl" alt="@recipe.Name">
 
                                         <div class="receipe-content">
                                             <h5 class="mb-1">@recipe.Name</h5>
@@ -80,43 +94,45 @@
 
                                         <!-- Hover detail card -->
                                         <div class="hover-card">
-                                            <img class="hover-img" src="~/img/bg-img/@recipe.ImageUrl" alt="@recipe.Name" />
+                                            <div class="hover-card-top">
+                                                <img class="hover-img" src="@recipe.ImageUrl" alt="@recipe.Name" />
 
-                                            <div style="min-width:0;">
-                                                <p class="hover-title">@recipe.Name</p>
+                                                <div style="min-width:0;">
+                                                    <p class="hover-title">@recipe.Name</p>
 
-                                                <div class="hover-meta">
-                                                    @if (!string.IsNullOrWhiteSpace(recipe.Cuisine))
-                                                    {
-                                                        <span class="pill">@recipe.Cuisine</span>
-                                                    }
-                                                    @if (!string.IsNullOrWhiteSpace(recipe.DietType) && recipe.DietType != "None")
-                                                    {
-                                                        <span class="pill">@recipe.DietType</span>
-                                                    }
-                                                </div>
-
-                                                <p class="hover-desc">
-                                                    @(string.IsNullOrWhiteSpace(recipe.Description) ? "No description yet." : recipe.Description)
-                                                </p>
-
-                                                <div class="ing-title">Ingredients</div>
-                                                <ul class="ing-list">
-                                                    @if (recipe.RecipeIngredients != null && recipe.RecipeIngredients.Any())
-                                                    {
-                                                        foreach (var ri in recipe.RecipeIngredients)
+                                                    <div class="hover-meta">
+                                                        @if (!string.IsNullOrWhiteSpace(recipe.Cuisine))
                                                         {
-                                                            var ingName = ri.Ingredient?.Name ?? "Unknown";
-                                                            var qty = string.IsNullOrWhiteSpace(ri.Quantity) ? "" : $" — {ri.Quantity}";
-                                                            <li>@ingName@qty</li>
+                                                            <span class="pill">@recipe.Cuisine</span>
                                                         }
-                                                    }
-                                                    else
-                                                    {
-                                                        <li>No ingredients yet.</li>
-                                                    }
-                                                </ul>
+                                                        @if (!string.IsNullOrWhiteSpace(recipe.DietType) && recipe.DietType != "None")
+                                                        {
+                                                            <span class="pill">@recipe.DietType</span>
+                                                        }
+                                                    </div>
+                                                </div>
                                             </div>
+
+                                            <p class="hover-desc">
+                                                @(string.IsNullOrWhiteSpace(recipe.Description) ? "No description yet." : recipe.Description)
+                                            </p>
+
+                                            <div class="ing-title">Ingredients</div>
+                                            <ul class="ing-list">
+                                                @if (recipe.RecipeIngredients != null && recipe.RecipeIngredients.Any())
+                                                {
+                                                    foreach (var ri in recipe.RecipeIngredients)
+                                                    {
+                                                        var ingName = ri.Ingredient?.Name ?? "Unknown";
+                                                        var qty = string.IsNullOrWhiteSpace(ri.Quantity) ? "" : $" — {ri.Quantity}";
+                                                        <li>@ingName@qty</li>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <li>No ingredients yet.</li>
+                                                }
+                                            </ul>
                                         </div>
 
                                     </div>
@@ -140,7 +156,7 @@
                     </div>
                 </div>
             </div>
-
+            <br />
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading text-left">
