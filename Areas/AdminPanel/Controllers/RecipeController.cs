@@ -1,14 +1,17 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RecipeProject.Areas.AdminPanel.ViewModels.Recipe;
 using RecipeProject.Data;
 using RecipeProject.Helpers;
+using RecipeProject.Helpers.Enum;
 using RecipeProject.Models;
 
 namespace RecipeProject.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
+    [Authorize(Roles = $"{nameof(Roles.Admin)},{nameof(Roles.Member)}")]
     public class RecipeController : Controller
     {
         private readonly AppDbContext _context;
@@ -262,6 +265,7 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
 
         // GET: Delete
         [HttpGet]
+        [Authorize(Roles = nameof(Roles.Admin))]
         public async Task<IActionResult> Delete(int id)
         {
             var recipe = await _context.Recipes
@@ -276,6 +280,7 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
+        [Authorize(Roles = nameof(Roles.Admin))]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var recipe = await _context.Recipes.FindAsync(id);

@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Common;
 using RecipeProject.Areas.AdminPanel.ViewModels.Ingredient;
 using RecipeProject.Data;
+using RecipeProject.Helpers.Enum;
 using RecipeProject.Models;
 
 namespace RecipeProject.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
+    [Authorize(Roles = $"{nameof(Roles.Admin)},{nameof(Roles.Member)}")]
     public class IngredientController : Controller
     {
         private readonly AppDbContext _context;
@@ -101,7 +103,7 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
             return View(updateVM);
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(UpdateIngredientVM updateIngredientVM)
@@ -118,7 +120,6 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
                 return View(updateIngredientVM);
             }
 
-            // Eyni adda başqa ingredient var mı? (özü istisna)
             bool existIngredient = await _context.Ingredients
                 .AnyAsync(c => c.Name.Trim().ToLower() == name.ToLower() && c.Id != updateIngredientVM.Id);
 
@@ -149,6 +150,7 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = nameof(Roles.Admin))]
         public async Task<IActionResult> Delete(int id)
         {
             var ingredient = await _context.Ingredients.FindAsync(id);
@@ -164,6 +166,7 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
+        [Authorize(Roles = nameof(Roles.Admin))]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var ingredient = await _context.Ingredients.FindAsync(id);

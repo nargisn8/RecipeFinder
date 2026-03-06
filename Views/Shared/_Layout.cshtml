@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using RecipeProject.Models
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -34,9 +40,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="#" method="post">
-                        <input type="search" name="search" placeholder="Type any keywords...">
-                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    <form action="/Recipes" method="get" id="recipeSearchForm">
+                        <input type="text" name="search" placeholder="Search recipes..." id="search-bar">
+                        <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
             </div>
@@ -104,10 +110,10 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li class="active"><a href="index.html">Home</a></li>
+                                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                                     <li>
-                                        <a href="#">Pages</a>
-                                        <ul class="dropdown">
+                                        @* <a href="#">Pages</a> *@
+                                        @* <ul class="dropdown">
                                             <li><a href="index.html">Home</a></li>
                                             <li><a href="about.html">About Us</a></li>
                                             <li><a href="blog-post.html">Blog Post</a></li>
@@ -138,23 +144,28 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                        </ul>
+                                        </ul> *@
                                     </li>
                                     <li>
                                     </li>
                                     <li><a asp-controller="Recipes" asp-action="Index">Recipes</a></li>
                                     <li><a href="receipe-post.html">4 Vegans</a></li>
                                     <li><a href="contact.html">Contact</a></li>
-                                    <li><a asp-area="AdminPanel" asp-controller="Dashboard" asp-action="Index">Admin</a></li>
+
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <li><a asp-area="AdminPanel" asp-controller="Dashboard" asp-action="Index">Admin</a></li>
+                                    }
+
                                     <!-- Account dropdown -->
                                     <li>
                                         <a href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
                                         <ul class="dropdown">
-                                            @if (User.Identity != null && User.Identity.IsAuthenticated)
+                                            @if (SignInManager.IsSignedIn(User))
                                             {
                                                 <li>
                                                     <a href="#" style="pointer-events:none; opacity:.6;">
-                                                        <i class="fa fa-user" aria-hidden="true"></i> @User.Identity.Name
+                                                        <i class="fa fa-user" aria-hidden="true"></i> @User.Identity!.Name
                                                     </a>
                                                 </li>
                                                 <li>
@@ -197,48 +208,63 @@
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
-            @RenderBody()
+    @RenderBody()
 
-            <!-- ##### Footer Area Start ##### -->
-            <footer class="footer-area">
-                <div class="container h-100">
-                    <div class="row h-100">
-                        <div class="col-12 h-100 d-flex flex-wrap align-items-center justify-content-between">
-                            <!-- Footer Social Info -->
-                            <div class="footer-social-info text-right">
-                                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                            </div>
-                            <!-- Footer Logo -->
-                            <div class="footer-logo">
-                                <a href="index.html"><img src="~/img/core-img/logo.png" alt=""></a>
-                            </div>
-                            <!-- Copywrite -->
-                            <p>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            </p>
-                        </div>
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-12 h-100 d-flex flex-wrap align-items-center justify-content-between">
+                    <!-- Footer Social Info -->
+                    <div class="footer-social-info text-right">
+                        <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                     </div>
+                    <!-- Footer Logo -->
+                    <div class="footer-logo">
+                        <a href="index.html"><img src="~/img/core-img/logo.png" alt=""></a>
+                    </div>
+                    <!-- Copywrite -->
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
                 </div>
-            </footer>
-            <!-- ##### Footer Area Start ##### -->
-            <!-- ##### All Javascript Files ##### -->
-            <!-- jQuery-2.2.4 js -->
-            <script src="~/js/jquery/jquery-2.2.4.min.js"></script>
-            <!-- Popper js -->
-            <script src="~/js/bootstrap/popper.min.js"></script>
-            <!-- Bootstrap js -->
-            <script src="~/js/bootstrap/bootstrap.min.js"></script>
-            <!-- All Plugins js -->
-            <script src="~/js/plugins/plugins.js"></script>
-            <!-- Active js -->
-            <script src="~/js/active.js"></script>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+    <!-- ##### All Javascript Files ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="~/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="~/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="~/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="~/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="~/js/active.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var searchForm = document.getElementById('recipeSearchForm');
+            var searchInput = searchForm.querySelector('input[name="search"]');
+            searchForm.onsubmit = function (e) {
+                e.preventDefault();
+                var query = searchInput.value;
+                if (query.trim() !== "") {
+                    window.location.href = '/Recipes?search=' + encodeURIComponent(query);
+                }
+            };
+        });
+    </script>
+
 </body>
 
 </html>

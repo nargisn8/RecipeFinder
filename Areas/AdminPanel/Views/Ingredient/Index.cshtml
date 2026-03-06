@@ -7,14 +7,17 @@
 }
 
 <div class="admin-page">
-    <div class="page-top">
-        <h2 class="page-title">Ingredients</h2>
+    <h2 class="page-title">Ingredients</h2>
 
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
         <a href="/AdminPanel/Ingredient/Create" class="btn btn-peach">
             Create
         </a>
+        <a href="/AdminPanel/Recipe/Index" class="btn btn-peach" style="background:#6c757d; border-radius:20px; padding:8px 20px;">
+            <i class="fa-solid fa-utensils"></i> Recipes
+        </a>
     </div>
-    <br />
+
     <div class="admin-card table-responsive">
         <table class="table table-borderless align-middle ingredients-table">
             <thead>
@@ -36,17 +39,14 @@
 
                             <td class="text-center">
                                 <a href="/AdminPanel/Ingredient/Detail/@item.Id" class="table-link"><i class="fa-solid fa-eye"></i></a>
-                                
                             </td>
 
                             <td class="text-center">
                                 <a href="/AdminPanel/Ingredient/Update/@item.Id" class="table-link"><i class="fa-solid fa-pen"></i></a>
-                                
                             </td>
 
                             <td class="text-center">
                                 <a href="/AdminPanel/Ingredient/Delete/@item.Id" class="table-link danger"><i class="fa-solid fa-trash"></i></a>
-                                
                             </td>
                         </tr>
                     }

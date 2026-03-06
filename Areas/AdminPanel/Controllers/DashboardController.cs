@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using RecipeProject.Helpers.Enum;
 
 namespace RecipeProject.Areas.AdminPanel.Controllers
 {

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RecipeProject.Data;
+using RecipeProject.Helpers.Enum;
 using RecipeProject.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,10 +29,28 @@ builder.Services.ConfigureApplicationCookie(opt =>
 {
     opt.LoginPath = "/Account/Login";
     opt.LogoutPath = "/Account/Logout";
-    opt.AccessDeniedPath = "/Account/Login";
+    opt.AccessDeniedPath = "/Account/AccessDenied";
 });
 
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+
+// Seed roles
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+    foreach (var role in Enum.GetValues<Roles>())
+    {
+        var roleName = role.ToString();
+        if (!await roleManager.RoleExistsAsync(roleName))
+            await roleManager.CreateAsync(new IdentityRole(roleName));
+    }
+}
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -43,7 +62,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "admin",
-    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",

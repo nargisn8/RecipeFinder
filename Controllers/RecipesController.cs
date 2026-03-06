@@ -38,6 +38,12 @@ namespace RecipeProject.Controllers
                         ri.Ingredient.Name.ToLower().Contains(term)));
             }
 
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                var term = search.Trim().ToLower();
+                recipes = recipes.Where(r => r.Name.ToLower().Contains(term)); // recipe adı ilə axtarış
+            }
+
             // Cuisine filter
             if (!string.IsNullOrWhiteSpace(cuisine))
             {

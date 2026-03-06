@@ -79,7 +79,6 @@ wwwroot\img\core-img\pancake.png
 wwwroot\img\core-img\pizza.png
 wwwroot\img\core-img\rib.png
 wwwroot\img\core-img\salad.png
-wwwroot\js\active.js
 wwwroot\js\bootstrap\bootstrap.min.js
 wwwroot\js\bootstrap\popper.min.js
 wwwroot\js\google-map\map-active.js
@@ -148,7 +147,6 @@ wwwroot\scss\_fonts.scss
 wwwroot\scss\_mixin.scss
 wwwroot\scss\_responsive.scss
 wwwroot\scss\_theme_color.scss
-wwwroot\style.css
 wwwroot\style.css.map
 wwwroot\uploads\recipes\1c7d7b6a-02c6-4c8d-b630-746c1db6c980.jpg
 wwwroot\uploads\recipes\1d7ef872-2f86-4f30-8ba1-4a5050ecdb2b.jpg
@@ -156,4 +154,7 @@ wwwroot\uploads\recipes\35046d9c-d329-4e9e-8013-a828ae398306.jpg
 wwwroot\uploads\recipes\4b0fa1b7-eb9b-4996-9c52-cdd2207cd07c.jpg
 wwwroot\uploads\recipes\4d7ad4da-acf8-488c-9b34-4e9215ee03a4.png
 wwwroot\uploads\recipes\cf1274b6-0b35-49a6-8f27-10fb3eb61171.jpg
+wwwroot\uploads\recipes\e700f09c-5108-4536-8532-e6a3496914c2.jpeg
 wwwroot\uploads\recipes\f6a9cbdc-a44e-46ff-90e4-58a9ad451983.jpeg
+wwwroot\js\active.js
+wwwroot\style.css

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using RecipeProject.Helpers.Enum;
 using RecipeProject.Models;
 using RecipeProject.ViewModels;
 
@@ -53,11 +54,7 @@ namespace RecipeProject.Controllers
                 return View(model);
             }
 
-            // Əgər "Member" rolu yoxdursa yarat
-            if (!await _roleManager.RoleExistsAsync("Member"))
-                await _roleManager.CreateAsync(new IdentityRole("Member"));
-
-            await _userManager.AddToRoleAsync(user, "Member");
+            await _userManager.AddToRoleAsync(user, nameof(Roles.Member));
             await _signInManager.SignInAsync(user, isPersistent: false);
 
             return RedirectToAction("Index", "Home");
@@ -65,22 +62,18 @@ namespace RecipeProject.Controllers
 
         // ======== LOGIN ========
         [HttpGet]
-        public IActionResult Login(string? returnUrl = null)
+        public IActionResult Login()
         {
-            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginVM model, string? returnUrl = null)
+        public async Task<IActionResult> Login(LoginVM model)
         {
-            ViewData["ReturnUrl"] = returnUrl;
-
             if (!ModelState.IsValid)
                 return View(model);
 
-            // Username və ya email ilə istifadəçini tap
             var user = await _userManager.FindByNameAsync(model.UsernameOrEmail)
                     ?? await _userManager.FindByEmailAsync(model.UsernameOrEmail);
 
@@ -98,9 +91,6 @@ namespace RecipeProject.Controllers
                 return View(model);
             }
 
-            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-                return Redirect(returnUrl);
-
             return RedirectToAction("Index", "Home");
         }
 
@@ -111,6 +101,13 @@ namespace RecipeProject.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        // ======== ACCESS DENIED ========
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }
