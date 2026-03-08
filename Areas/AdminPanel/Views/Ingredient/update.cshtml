@@ -5,7 +5,7 @@
     ViewData["Title"] = "Update Ingredient";
 }
 
-<h1>Update Ingredient</h1>
+<h1 style="color:black">Update Ingredient</h1>
 <hr />
 
 <form asp-area="AdminPanel" asp-controller="Ingredient" asp-action="Update" method="post">
@@ -13,7 +13,7 @@
 
     <input type="hidden" name="Id" value="@Model.Id" />
 
-    <div class="form-group">
+    <div class="form-group" style="color:black">
         <label for="Name">Name</label>
         <input type="text" name="Name" id="Name" class="form-control" value="@Model.Name" />
         <span asp-validation-for="Name" class="text-danger"></span>

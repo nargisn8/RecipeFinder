@@ -3,7 +3,6 @@
     --light: #e3f0ff;
     --dark: #2f2f2f;
     --muted: #cfcfcf;
-    --cta: #ea9a7f;
 }
 
 html, body {
@@ -380,7 +379,7 @@ body {
         }
 
     .ingredients-table tbody tr:hover td {
-        background: #ea9a7f;
+        background: #e3f0ff;
     }
 
     .ingredients-table thead th {
@@ -409,7 +408,7 @@ body {
 }
 
     .image-upload-area:hover {
-        border-color: var(--peach);
+        border-color: #e3f0ff;
         background: rgba(234, 154, 127, 0.05);
     }
 

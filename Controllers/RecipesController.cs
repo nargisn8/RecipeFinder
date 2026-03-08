@@ -82,5 +82,33 @@ namespace RecipeProject.Controllers
 
             return View(vm);
         }
+
+        [HttpPost]
+        public IActionResult AddToWishlist(int recipeId)
+        {
+            var userId = User.Identity.Name;  // Təsdiq edilmiş istifadəçi adı
+
+            // İstifadəçinin wishlist-i yoxdursa, yeni bir wishlist yaradırıq
+            var wishlist = _context.Wishlists.FirstOrDefault(w => w.UserId == userId);
+
+            if (wishlist == null)
+            {
+                // Əgər istifadəçinin wishlist-i yoxdursa, yeni wishlist yaradırıq
+                wishlist = new Wishlist { UserId = userId };
+                _context.Wishlists.Add(wishlist);
+                _context.SaveChanges();
+            }
+
+            // Seçilmiş resepti istifadəçinin wishlist-ə əlavə edirik
+            var recipe = _context.Recipes.FirstOrDefault(r => r.Id == recipeId);
+            if (recipe != null)
+            {
+                recipe.WishlistId = wishlist.Id;  // Resepti wishlist-ə əlavə edirik
+                _context.SaveChanges();
+                return Json(new { success = true });
+            }
+
+            return Json(new { success = false });
+        }
     }
 }

@@ -85,8 +85,13 @@
                             {
                                 <div class="@colClass">
                                     <div class="single-best-receipe-area mb-30">
+                                        <div class="recipe-img-container">
 
-                                        <img src="@recipe.ImageUrl" alt="@recipe.Name">
+                                            <img src="@recipe.ImageUrl" alt="@recipe.Name" class="main-recipe-img">
+
+                                        <button class="add-to-wishlist" data-recipe-id="@recipe.Id">
+                                            <i class="fa fa-heart" aria-hidden="true"></i>
+                                        </button>
 
                                         <div class="receipe-content">
                                             <h5 class="mb-1">@recipe.Name</h5>
@@ -135,7 +140,7 @@
                                                 }
                                             </ul>
                                         </div>
-
+                                        </div>
                                     </div>
                                 </div>
                             }

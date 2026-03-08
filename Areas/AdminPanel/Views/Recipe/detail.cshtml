@@ -5,26 +5,26 @@
     ViewData["Title"] = "Recipe Detail";
 }
 
-<h1>Recipe Detail</h1>
+<h1 style="color:black">Recipe Detail</h1>
 <hr />
 
 <div>
-    <dl class="row">
-        <dt class="col-sm-3">Name</dt>
+    <dl class="row" style="color:black !important">
+        <dt class="col-sm-3" style="color:black">Name</dt>
         <dd class="col-sm-9">@Model.Name</dd>
 
-        <dt class="col-sm-3">Description</dt>
+        <dt class="col-sm-3" style="color:black">Description</dt>
         <dd class="col-sm-9">@Model.Description</dd>
 
-        <dt class="col-sm-3">Diet Type</dt>
+        <dt class="col-sm-3" style="color:black">Diet Type</dt>
         <dd class="col-sm-9">@Model.DietType</dd>
 
-        <dt class="col-sm-3">Cuisine</dt>
+        <dt class="col-sm-3" style="color:black">Cuisine</dt>
         <dd class="col-sm-9">@Model.Cuisine</dd>
 
         @if (!string.IsNullOrEmpty(Model.ImageUrl))
         {
-            <dt class="col-sm-3">Image</dt>
+            <dt class="col-sm-3" style="color:black">Image</dt>
             <dd class="col-sm-9">
                 <img src="@Model.ImageUrl" alt="@Model.Name" style="max-width:300px;" />
             </dd>
@@ -32,7 +32,6 @@
     </dl>
 </div>
 
-<h4>Ingredients</h4>
 <table class="table">
     <thead>
         <tr>

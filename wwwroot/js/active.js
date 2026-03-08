@@ -136,5 +136,25 @@
         $.preventDefault()
     });
 
+    $('.add-to-wishlist').on('click', function (e) {
+        e.preventDefault();
+        var btn = $(this);
+        var recipeId = btn.data('recipe-id');
+
+        $.ajax({
+            url: '/Wishlist/AddRecipe', // Controller ad?n v? Metod ad?n
+            type: 'POST',
+            data: { recipeId: recipeId },
+            success: function (response) {
+                btn.addClass('active'); // Ür?yi boyay?r?q
+                alert("Resept siyah?ya ?lav? edildi!");
+            },
+            error: function () {
+                alert("X?ta ba? verdi. Ola bilsin art?q ?lav? edilib.");
+            }
+        });
+    });
+
+
 
 })(jQuery);

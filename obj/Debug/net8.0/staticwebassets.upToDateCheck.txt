@@ -1,5 +1,20 @@
 wwwroot\admin\css\admin.css
+wwwroot\admin\img\Crepes.jpg
+wwwroot\admin\img\Egg-Fried-Rice.jpg
+wwwroot\admin\img\greek-salad-recipe.jpg
+wwwroot\admin\img\Kung-Pao-Chinese.jpg
+wwwroot\admin\img\Lentil soup.webp
 wwwroot\admin\img\panelphoto.jpg
+wwwroot\admin\img\Quiche Lorraine1.jpg
+wwwroot\admin\img\Qutabb.jpg
+wwwroot\admin\img\Ratatouille1.jpg
+wwwroot\admin\img\Sekerbura.jpg
+wwwroot\admin\img\Spaghetti-Alio-e-Olio-10-1.jpg
+wwwroot\admin\img\Spring Roolss.jpg
+wwwroot\admin\img\Tang-yuan.jpg
+wwwroot\admin\img\Tiramisuuu.jpg
+wwwroot\admin\img\Vegetable Quinoa Salad.jpg
+wwwroot\admin\img\Şəkərbura.jpg
 wwwroot\css\animate.css
 wwwroot\css\bootstrap.min.css
 wwwroot\css\classy-nav.min.css
@@ -8,7 +23,6 @@ wwwroot\css\font-awesome.min.css
 wwwroot\css\magnific-popup.css
 wwwroot\css\nice-select.min.css
 wwwroot\css\owl.carousel.min.css
-wwwroot\css\site.css
 wwwroot\fonts\classy.eot
 wwwroot\fonts\classy.svg
 wwwroot\fonts\classy.ttf
@@ -79,6 +93,7 @@ wwwroot\img\core-img\pancake.png
 wwwroot\img\core-img\pizza.png
 wwwroot\img\core-img\rib.png
 wwwroot\img\core-img\salad.png
+wwwroot\js\active.js
 wwwroot\js\bootstrap\bootstrap.min.js
 wwwroot\js\bootstrap\popper.min.js
 wwwroot\js\google-map\map-active.js
@@ -147,14 +162,33 @@ wwwroot\scss\_fonts.scss
 wwwroot\scss\_mixin.scss
 wwwroot\scss\_responsive.scss
 wwwroot\scss\_theme_color.scss
+wwwroot\style.css
 wwwroot\style.css.map
+wwwroot\uploads\recipes\067833a2-8a7f-4046-8c43-e0d0849e6454.jpg
+wwwroot\uploads\recipes\114dcae1-ab00-4bef-98d8-9e4bf8e117a4.webp
+wwwroot\uploads\recipes\168ee915-8bec-4c4f-a752-a80ec0877c3e.jpg
 wwwroot\uploads\recipes\1c7d7b6a-02c6-4c8d-b630-746c1db6c980.jpg
 wwwroot\uploads\recipes\1d7ef872-2f86-4f30-8ba1-4a5050ecdb2b.jpg
+wwwroot\uploads\recipes\20feae74-896b-4b0b-8f7c-18a597af80bb.webp
 wwwroot\uploads\recipes\35046d9c-d329-4e9e-8013-a828ae398306.jpg
+wwwroot\uploads\recipes\470e34f0-b83b-4c64-bc8d-d47e37e2b315.jpg
+wwwroot\uploads\recipes\49ba770f-b382-4903-a67d-5f193ee7c151.jpg
 wwwroot\uploads\recipes\4b0fa1b7-eb9b-4996-9c52-cdd2207cd07c.jpg
-wwwroot\uploads\recipes\4d7ad4da-acf8-488c-9b34-4e9215ee03a4.png
+wwwroot\uploads\recipes\4c494a54-ad88-476b-a5a7-1a16900f2f97.jpg
+wwwroot\uploads\recipes\509d492d-ef91-475c-8da4-ae46032869f5.jpg
+wwwroot\uploads\recipes\642c6908-73fa-406a-b459-867d95dcd765.jpg
+wwwroot\uploads\recipes\6ff6ae54-5467-47e6-ae8f-4941994efb1b.jpg
+wwwroot\uploads\recipes\733d8d55-58a2-4359-8ada-d81adde3772c.jpg
+wwwroot\uploads\recipes\8633c74d-acf4-4a59-8af5-5a7dfa26eb0f.jpg
+wwwroot\uploads\recipes\868d9882-b2bf-4ddf-926f-29a77cf43cd0.jpg
+wwwroot\uploads\recipes\a92c1646-3772-41f1-9bd0-3e3520cb2ec6.jpg
+wwwroot\uploads\recipes\ae415a3e-3295-4a40-97f6-b0be5d82b826.jpg
+wwwroot\uploads\recipes\baa90a09-30c8-4884-b791-00651e5da542.jpg
+wwwroot\uploads\recipes\c9cb8f5e-e702-42f0-a9ab-7be1d571114e.jpg
 wwwroot\uploads\recipes\cf1274b6-0b35-49a6-8f27-10fb3eb61171.jpg
+wwwroot\uploads\recipes\dc54d49f-0580-4088-99f3-96c6057e877a.jpg
 wwwroot\uploads\recipes\e700f09c-5108-4536-8532-e6a3496914c2.jpeg
+wwwroot\uploads\recipes\e70e2761-2c27-4c69-be50-41ae72829ed3.jpg
 wwwroot\uploads\recipes\f6a9cbdc-a44e-46ff-90e4-58a9ad451983.jpeg
-wwwroot\js\active.js
-wwwroot\style.css
+wwwroot\uploads\recipes\fd39918d-0929-473f-b27d-826a55bc4cd2.jpg
+wwwroot\css\site.css

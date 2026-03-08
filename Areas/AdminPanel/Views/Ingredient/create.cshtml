@@ -5,20 +5,20 @@
     ViewData["Title"] = "Create Ingredient";
 }
 
-<h1>Create Ingredient</h1>
+<h1 style="color:black">Create Ingredient</h1>
 
-<h4>Ingredient</h4>
+<h4 style="color:black">Ingredient</h4>
 <hr />
 <form action="/AdminPanel/Ingredient/Create" method="post">
     @Html.AntiForgeryToken()
-    <div class="form-group">
+    <div class="form-group" style="color:black">
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control" />
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
 
     <!-- Create düyməsi - formu göndərir -->
-    <button type="submit" class="btn btn-peach">
+    <button type="submit" class="btn btn-peach" style="color:black">
         Create
     </button>
 </form>
