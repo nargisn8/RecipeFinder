@@ -14,5 +14,8 @@ namespace RecipeProject.ViewModels
         public List<Recipe> Recipes { get; set; } = new();
         public List<string> Cuisines { get; set; } = new();
         public List<string> DietTypes { get; set; } = new();
+
+        public int CurrentPage { get; set; }
+        public int TotalPages { get; set; }
     }
 }

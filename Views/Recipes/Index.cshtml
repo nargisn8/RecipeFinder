@@ -2,22 +2,9 @@
 @model RecipesVM
 
 @{
-    /* Kart sayına görə sütun ölçüsünü təyin et */
-    var hasFilter = !string.IsNullOrWhiteSpace(Model.Search)
-                 || !string.IsNullOrWhiteSpace(Model.Cuisine)
-                 || !string.IsNullOrWhiteSpace(Model.DietType)
-                 || Model.IngredientId.HasValue;
-
-    var recipeCount = Model.Recipes.Count;
-
-    /* Filter aktiv + az nəticə varsa böyük kartlar, yoxsa standart 3-lü grid */
-    string colClass = hasFilter && recipeCount <= 2
-        ? "col-12 col-sm-6"
-        : "col-12 col-sm-6 col-lg-4";
+    string colClass = "col-12 col-sm-6 col-lg-4";
 }
 
-
-<!-- ##### Breadcumb Area Start ##### -->
 <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
     <div class="container h-100">
         <div class="row h-100 align-items-center">
@@ -29,36 +16,33 @@
         </div>
     </div>
 </div>
-<!-- ##### Breadcumb Area End ##### -->
 
 <div class="receipe-post-area section-padding-80">
 
-    <!-- Receipe Post Search -->
     <div class="receipe-post-search mb-80">
         <div class="container">
-            <form action="#" method="post">
+            <form action="@Url.Action("Index", "Recipes")" method="get">
                 <div class="row">
-                    <!-- Replace the Cuisines dropdown with this -->
                     <div class="col-12 col-lg-3">
                         <select name="cuisine" id="select1">
                             <option value="">All Cuisines</option>
                             @foreach (var cuisine in Model.Cuisines)
                             {
-                                <option value="@cuisine">@cuisine</option>
+                                <option value="@cuisine" selected="@(Model.Cuisine == cuisine ? "selected" : null)">@cuisine</option>
                             }
                         </select>
                     </div>
                     <div class="col-12 col-lg-3">
-                        <select name="diet" id="select2">
+                        <select name="dietType" id="select2">
                             <option value="">All Diet Types</option>
                             @foreach (var diet in Model.DietTypes)
                             {
-                                <option value="@diet">@diet</option>
+                                <option value="@diet" selected="@(Model.DietType == diet ? "selected" : null)">@diet</option>
                             }
                         </select>
                     </div>
                     <div class="col-12 col-lg-3">
-                        <input type="search" name="search" placeholder="Search Receipies">
+                        <input type="search" name="search" value="@Model.Search" placeholder="Search Recipes">
                     </div>
                     <div class="col-12 col-lg-3 text-right">
                         <button type="submit" class="btn delicious-btn">Search</button>
@@ -68,26 +52,30 @@
         </div>
     </div>
 
-
-
-    <!-- Receipe Content Area -->
     <div class="receipe-content-area">
         <div class="container">
 
+            <div class="navigation-wrapper">
 
-            <div class="row">
-                <!-- ##### Best Receipe Area Start ##### -->
-                <section class="best-receipe-area">
-                    <div class="container">
-                        <div class="row">
-                            <!-- Single Best Receipe Area -->
-                            @foreach (var recipe in Model.Recipes)
-                            {
-                                <div class="@colClass">
-                                    <div class="single-best-receipe-area mb-30">
-                                        <div class="recipe-img-container">
+                @if (Model.CurrentPage > 1)
+                {
+                    <a href="@Url.Action("Index", new { page = Model.CurrentPage - 1, search = Model.Search, cuisine = Model.Cuisine, dietType = Model.DietType })" class="side-nav-arrow">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                }
+                else
+                {
+                    <div style="width:50px; margin: 0 15px;" class="d-none d-lg-block"></div>
+                }
 
-                                            <img src="@recipe.ImageUrl" alt="@recipe.Name" class="main-recipe-img">
+                <div class="recipe-main-grid">
+                    <div class="row">
+                        @foreach (var recipe in Model.Recipes)
+                        {
+                            <div class="@colClass">
+                                <div class="single-best-receipe-area mb-30">
+                                    <div class="recipe-img-container">
+                                        <img src="@recipe.ImageUrl" alt="@recipe.Name" class="main-recipe-img">
 
                                         <button class="add-to-wishlist" data-recipe-id="@recipe.Id">
                                             <i class="fa fa-heart" aria-hidden="true"></i>
@@ -98,14 +86,11 @@
                                             <small class="text-muted">@recipe.Cuisine</small>
                                         </div>
 
-                                        <!-- Hover detail card -->
                                         <div class="hover-card">
                                             <div class="hover-card-top">
                                                 <img class="hover-img" src="@recipe.ImageUrl" alt="@recipe.Name" />
-
                                                 <div style="min-width:0;">
                                                     <p class="hover-title">@recipe.Name</p>
-
                                                     <div class="hover-meta">
                                                         @if (!string.IsNullOrWhiteSpace(recipe.Cuisine))
                                                         {
@@ -118,20 +103,16 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <p class="hover-desc">
                                                 @(string.IsNullOrWhiteSpace(recipe.Description) ? "No description yet." : recipe.Description)
                                             </p>
-
                                             <div class="ing-title">Ingredients</div>
                                             <ul class="ing-list">
                                                 @if (recipe.RecipeIngredients != null && recipe.RecipeIngredients.Any())
                                                 {
                                                     foreach (var ri in recipe.RecipeIngredients)
                                                     {
-                                                        var ingName = ri.Ingredient?.Name ?? "Unknown";
-                                                        var qty = string.IsNullOrWhiteSpace(ri.Quantity) ? "" : $" — {ri.Quantity}";
-                                                        <li>@ingName@qty</li>
+                                                        <li>@(ri.Ingredient?.Name ?? "Unknown") @(string.IsNullOrWhiteSpace(ri.Quantity) ? "" : $" — {ri.Quantity}")</li>
                                                     }
                                                 }
                                                 else
@@ -140,59 +121,92 @@
                                                 }
                                             </ul>
                                         </div>
-                                        </div>
                                     </div>
                                 </div>
-                            }
-                        </div>
+                            </div>
+                        }
                     </div>
-                </section>
-                <!-- ##### Best Receipe Area End ##### -->
+                </div>
+
+                @if (Model.CurrentPage < Model.TotalPages)
+                {
+                    <a href="@Url.Action("Index", new { page = Model.CurrentPage + 1, search = Model.Search, cuisine = Model.Cuisine, dietType = Model.DietType })" class="side-nav-arrow">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                }
+                else
+                {
+                    <div style="width:50px; margin: 0 15px;" class="d-none d-lg-block"></div>
+                }
+
             </div>
 
-            <!-- Receipe Slider -->
-            <div class="container">
-                <div class="row">
+            @if (Model.TotalPages > 1)
+            {
+                <div class="row mt-50">
                     <div class="col-12">
-                        <div class="receipe-slider owl-carousel">
-                            <img src="img/bg-img/bg5.jpg" alt="">
-                            <img src="img/bg-img/bg5.jpg" alt="">
-                            <img src="img/bg-img/bg5.jpg" alt="">
-                        </div>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                                    <a class="page-link" href="@Url.Action("Index", new { page = Model.CurrentPage - 1, search = Model.Search, cuisine = Model.Cuisine, dietType = Model.DietType })">
+                                        <i class="fa fa-angle-left"></i>
+                                    </a>
+                                </li>
+
+                                @for (int i = 1; i <= Model.TotalPages; i++)
+                                {
+                                    <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                                        <a class="page-link" href="@Url.Action("Index", new { page = i, search = Model.Search, cuisine = Model.Cuisine, dietType = Model.DietType })">@i</a>
+                                    </li>
+                                }
+
+                                <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
+                                    <a class="page-link" href="@Url.Action("Index", new { page = Model.CurrentPage + 1, search = Model.Search, cuisine = Model.Cuisine, dietType = Model.DietType })">
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            }
+
+            <div class="row mt-50">
+                <div class="col-12">
+                    <div class="receipe-slider owl-carousel">
+                        <img src="img/bg-img/bg5.jpg" alt="">
+                        <img src="img/bg-img/bg5.jpg" alt="">
+                        <img src="img/bg-img/bg5.jpg" alt="">
                     </div>
                 </div>
             </div>
-            <br />
-            <div class="row">
+
+            <div class="row mt-50">
                 <div class="col-12">
                     <div class="section-heading text-left">
-                        <h3>Leave a comment</h3>
+                        <h3>Pro Cooking Tips</h3>
                     </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="contact-form-area">
-                        <form action="#" method="post">
-                            <div class="row">
-                                <div class="col-12 col-lg-6">
-                                    <input type="text" class="form-control" id="name" placeholder="Name">
-                                </div>
-                                <div class="col-12 col-lg-6">
-                                    <input type="email" class="form-control" id="email" placeholder="E-mail">
-                                </div>
-                                <div class="col-12">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                </div>
-                                <div class="col-12">
-                                    <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn delicious-btn mt-30" type="submit">Post Comments</button>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="cooking-tips-container p-4" style="background-color: #f3f5f8; border-left: 5px solid #70c225; border-radius: 5px;">
+                        <div class="single-tip mb-3 d-flex align-items-start">
+                            <i class="fa fa-check-circle mr-3" style="color: #70c225; font-size: 20px; margin-top: 3px;"></i>
+                            <p class="mb-0"><strong>Perfect Texture:</strong> For the best results, always ensure your ingredients are at room temperature before starting.</p>
+                        </div>
+
+                        <div class="single-tip mb-3 d-flex align-items-start">
+                            <i class="fa fa-check-circle mr-3" style="color: #70c225; font-size: 20px; margin-top: 3px;"></i>
+                            <p class="mb-0"><strong>Seasoning:</strong> Don't forget to taste your dish while cooking and adjust the salt and spices as needed.</p>
+                        </div>
+
+                        <div class="single-tip mb-3 d-flex align-items-start">
+                            <i class="fa fa-check-circle mr-3" style="color: #70c225; font-size: 20px; margin-top: 3px;"></i>
+                            <p class="mb-0"><strong>Storage:</strong> This meal can be kept in an airtight container in the fridge for up to 3 days. Reheat gently for the best taste.</p>
+                        </div>
+
+                        <div class="single-tip d-flex align-items-start">
+                            <i class="fa fa-check-circle mr-3" style="color: #70c225; font-size: 20px; margin-top: 3px;"></i>
+                            <p class="mb-0"><strong>Substitution:</strong> If you don't have fresh herbs, you can use 1/3 of the amount of dried herbs as a replacement.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -200,79 +214,16 @@
     </div>
 </div>
 
-<!-- ##### Follow Us Instagram Area Start ##### -->
 <div class="follow-us-instagram">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h5>Follow Us Instragram</h5>
-            </div>
-        </div>
-    </div>
-    <!-- Instagram Feeds -->
     <div class="insta-feeds d-flex flex-wrap">
-        <!-- Single Insta Feeds -->
-        <div class="single-insta-feeds">
-            <img src="img/bg-img/insta1.jpg" alt="">
-            <!-- Icon -->
-            <div class="insta-icon">
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+        @for (int i = 1; i <= 7; i++)
+        {
+            <div class="single-insta-feeds">
+                <img src="img/bg-img/insta@(i).jpg" alt="">
+                <div class="insta-icon">
+                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </div>
             </div>
-        </div>
-
-        <!-- Single Insta Feeds -->
-        <div class="single-insta-feeds">
-            <img src="img/bg-img/insta2.jpg" alt="">
-            <!-- Icon -->
-            <div class="insta-icon">
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            </div>
-        </div>
-
-        <!-- Single Insta Feeds -->
-        <div class="single-insta-feeds">
-            <img src="img/bg-img/insta3.jpg" alt="">
-            <!-- Icon -->
-            <div class="insta-icon">
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            </div>
-        </div>
-
-        <!-- Single Insta Feeds -->
-        <div class="single-insta-feeds">
-            <img src="img/bg-img/insta4.jpg" alt="">
-            <!-- Icon -->
-            <div class="insta-icon">
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            </div>
-        </div>
-
-        <!-- Single Insta Feeds -->
-        <div class="single-insta-feeds">
-            <img src="img/bg-img/insta5.jpg" alt="">
-            <!-- Icon -->
-            <div class="insta-icon">
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            </div>
-        </div>
-
-        <!-- Single Insta Feeds -->
-        <div class="single-insta-feeds">
-            <img src="img/bg-img/insta6.jpg" alt="">
-            <!-- Icon -->
-            <div class="insta-icon">
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            </div>
-        </div>
-
-        <!-- Single Insta Feeds -->
-        <div class="single-insta-feeds">
-            <img src="img/bg-img/insta7.jpg" alt="">
-            <!-- Icon -->
-            <div class="insta-icon">
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            </div>
-        </div>
+        }
     </div>
 </div>
-<!-- ##### Follow Us Instagram Area End ##### -->

@@ -13,7 +13,6 @@
 @import url(css/owl.carousel.min.css);
 @import url(css/animate.css);
 @import url(css/magnific-popup.css);
-@import url(css/font-awesome.min.css);
 @import url(css/custom-icon.css);
 @import url(css/classy-nav.min.css);
 @import url(css/nice-select.min.css);
@@ -1379,3 +1378,8 @@ textarea:focus {
     padding-left: 30px; }
 
 /*# sourceMappingURL=style.css.map */
+.fa, .fas, .fa-solid {
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+    display: inline-block !important;
+}

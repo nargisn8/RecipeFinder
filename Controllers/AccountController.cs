@@ -22,7 +22,6 @@ namespace RecipeProject.Controllers
             _roleManager = roleManager;
         }
 
-        // ======== REGISTER ========
         [HttpGet]
         public IActionResult Register()
         {
@@ -60,7 +59,6 @@ namespace RecipeProject.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // ======== LOGIN ========
         [HttpGet]
         public IActionResult Login()
         {
@@ -94,7 +92,6 @@ namespace RecipeProject.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // ======== LOGOUT ========
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
@@ -103,7 +100,6 @@ namespace RecipeProject.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // ======== ACCESS DENIED ========
         [HttpGet]
         public IActionResult AccessDenied()
         {

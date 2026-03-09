@@ -3,28 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|c:\\users\\nargis\\desktop\\recipeproject\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|c:\\users\\nargis\\desktop\\recipeproject\\views\\recipes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|solutionrelative:views\\recipes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|c:\\users\\nargis\\desktop\\recipeproject\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|c:\\users\\nargis\\desktop\\recipeproject\\wwwroot\\js\\active.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|solutionrelative:wwwroot\\js\\active.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|c:\\users\\nargis\\desktop\\recipeproject\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|c:\\users\\nargis\\desktop\\recipeproject\\areas\\adminpanel\\views\\ingredient\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1B4A3F7C-C409-4EC1-B7B5-F377F32B5CCE}|RecipeProject.csproj|solutionrelative:areas\\adminpanel\\views\\ingredient\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,71 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 1268,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\Views\\Recipes\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Recipes\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\Views\\Recipes\\Index.cshtml",
-              "RelativeToolTip": "Views\\Recipes\\Index.cshtml",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAiwKIAAAAWAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\Views\\Recipes\\Index.cshtml*",
+              "RelativeToolTip": "Views\\Recipes\\Index.cshtml*",
+              "ViewState": "AgIAAKUAAAAAAAAAAAAAANMAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-08T21:25:10.617Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "active.js",
-              "DocumentMoniker": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\wwwroot\\js\\active.js",
-              "RelativeDocumentMoniker": "wwwroot\\js\\active.js",
-              "ToolTip": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\wwwroot\\js\\active.js",
-              "RelativeToolTip": "wwwroot\\js\\active.js",
-              "ViewState": "AgIAAJUAAAAAAAAAAAAAAJ0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2026-03-08T21:12:52.402Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAM8AAAAAAAAAAAAiwOQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-08T20:52:41.527Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAACkAAAAAAAAAAAAAAEgAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-08T15:58:33.382Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "site.css",
-              "DocumentMoniker": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\wwwroot\\css\\site.css",
-              "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
-              "ToolTip": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\wwwroot\\css\\site.css",
-              "RelativeToolTip": "wwwroot\\css\\site.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-03-08T14:39:51.627Z",
+              "WhenOpened": "2026-03-09T18:48:10.458Z",
               "EditorCaption": ""
             },
             {
@@ -108,19 +36,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "create.cshtml",
-              "DocumentMoniker": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\Areas\\AdminPanel\\Views\\Ingredient\\create.cshtml",
-              "RelativeDocumentMoniker": "Areas\\AdminPanel\\Views\\Ingredient\\create.cshtml",
-              "ToolTip": "C:\\Users\\Nargis\\Desktop\\RecipeProject\\Areas\\AdminPanel\\Views\\Ingredient\\create.cshtml",
-              "RelativeToolTip": "Areas\\AdminPanel\\Views\\Ingredient\\create.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABwAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-07T19:11:20.215Z",
-              "EditorCaption": ""
             }
           ]
         },

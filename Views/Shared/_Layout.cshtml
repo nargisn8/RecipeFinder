@@ -1,8 +1,22 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using RecipeProject.Models
+@using Microsoft.EntityFrameworkCore
 
+@inject RecipeProject.Data.AppDbContext _context
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
+
+@{
+    var userName = User.Identity.Name;
+    var initialCount = 0;
+    if (!string.IsNullOrEmpty(userName))
+    {
+        var wishlist = _context.Wishlists
+            .Include(w => w.Recipes)
+            .FirstOrDefault(w => w.UserId == userName);
+        initialCount = wishlist?.Recipes?.Count ?? 0;
+    }
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,9 +36,8 @@
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="~/style.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/recipe-cards.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-
 <body>
     <!-- Preloader -->
     <div id="preloader">
@@ -69,7 +82,7 @@
                         </div>
                     </div>
 
-                    <!-- Top Social Info -->
+                    @* <!-- Top Social Info -->
                     <div class="col-12 col-sm-6">
                         <div class="top-social-info text-right">
                             <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
@@ -79,7 +92,7 @@
                             <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
                             <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                         </div>
-                    </div>
+                    </div> *@
                 </div>
             </div>
         </div>
@@ -106,7 +119,6 @@
                             <div class="classycloseIcon">
                                 <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                             </div>
-
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
@@ -114,10 +126,13 @@
                                     <li>
                                     </li>
                                     <li><a asp-controller="Recipes" asp-action="Index">Recipes</a></li>
+                                 
                                     @if (User.IsInRole("Admin"))
                                     {
                                         <li><a asp-area="AdminPanel" asp-controller="Dashboard" asp-action="Index">Admin</a></li>
                                     }
+
+                                  
 
                                     <!-- Account dropdown -->
                                     <li>
@@ -154,11 +169,31 @@
                                             }
                                         </ul>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link wishlist-link" asp-controller="Wishlist" asp-action="Index" style="position: relative; display: inline-block;">
+                                            <i class="fa-regular fa-heart" style="font-size: 1.2rem;"></i>
+                                            <span id="wishlist-count" class="wishlist-badge">@initialCount</span>
+                                        </a>
+                                    </li>
                                 </ul>
 
-                                <!-- Newsletter Form -->
                                 <div class="search-btn">
                                     <i class="fa fa-search" aria-hidden="true"></i>
+                                </div>
+
+                                <div class="search-wrapper">
+                                    <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
+
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <form asp-controller="Recipes" asp-action="Index" method="get" id="recipeSearchForm">
+                                                    <input type="search" name="search" placeholder="Resept axtar..." id="search-bar">
+                                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -177,7 +212,7 @@
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-12 h-100 d-flex flex-wrap align-items-center justify-content-between">
-                    <!-- Footer Social Info -->
+                    @* <!-- Footer Social Info -->
                     <div class="footer-social-info text-right">
                         <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
                         <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -185,7 +220,7 @@
                         <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
                         <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
                         <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                    </div>
+                    </div> *@
                     <!-- Footer Logo -->
                     <div class="footer-logo">
                         <a href="index.html"><img src="~/img/core-img/logo.png" alt=""></a>
@@ -211,7 +246,7 @@
     <!-- All Plugins js -->
     <script src="~/js/plugins/plugins.js"></script>
     <!-- Active js -->
-    <script src="~/js/active.js"></script>
+    <script src="/js/active.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -226,6 +261,22 @@
             };
         });
     </script>
+
+    <script>
+        $(document).ready(function () {
+            $('.search-btn').on('click', function () {
+                $('.search-wrapper').addClass('search-wrapper-open');
+            });
+
+            $('.close-btn').on('click', function () {
+                $('.search-wrapper').removeClass('search-wrapper-open');
+            });
+        });
+    </script>
+
+    <script src="~/js/site.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
 
 </body>
 

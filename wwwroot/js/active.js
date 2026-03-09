@@ -142,16 +142,31 @@
         var recipeId = btn.data('recipe-id');
 
         $.ajax({
-            url: '/Wishlist/AddRecipe', // Controller ad?n v? Metod ad?n
+            url: '/Wishlist/AddRecipe', 
             type: 'POST',
             data: { recipeId: recipeId },
             success: function (response) {
-                btn.addClass('active'); // Ür?yi boyay?r?q
-                alert("Resept siyah?ya ?lav? edildi!");
+                if (response.success) {
+                    btn.addClass('active');
+                    alert(response.message);
+                } else {
+                    alert(response.message);
+                }
             },
-            error: function () {
-                alert("X?ta ba? verdi. Ola bilsin art?q ?lav? edilib.");
+            error: function (xhr) {
+                console.error("Status: " + xhr.status);
+                alert("System error. Please check if you are logged in.");
             }
+        });
+    });
+
+    $(document).ready(function () {
+        $('.search-btn').on('click', function () {
+            $('.search-wrapper').addClass('search-wrapper-open');
+        });
+
+        $('.close-btn').on('click', function () {
+            $('.search-wrapper').removeClass('search-wrapper-open');
         });
     });
 
