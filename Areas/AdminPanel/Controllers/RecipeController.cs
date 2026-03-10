@@ -21,12 +21,22 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
             _context = context;
         }
 
-        // GET: Index
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var recipes = await _context.Recipes
+            var query = _context.Recipes
                 .Where(r => !r.IsDeleted)
+                .AsNoTracking();
+
+            if (!string.IsNullOrWhiteSpace(searchString))
+            {
+                searchString = searchString.Trim().ToLower();
+                query = query.Where(r => r.Name.ToLower().Contains(searchString) ||
+                                         r.Cuisine.ToLower().Contains(searchString));
+            }
+
+            var recipes = await query
+                .OrderByDescending(r => r.Id)
                 .Select(r => new GetRecipeVM
                 {
                     Id = r.Id,
@@ -37,10 +47,11 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
                 })
                 .ToListAsync();
 
+            ViewBag.CurrentSearch = searchString;
+
             return View(recipes);
         }
 
-        // GET: Detail
         [HttpGet]
         public async Task<IActionResult> Detail(int id)
         {
@@ -68,7 +79,6 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
             return View(detailVM);
         }
 
-        // GET: Create
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -80,7 +90,6 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
             return View(vm);
         }
 
-        // POST: Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateRecipeVM createRecipeVM)
@@ -103,7 +112,6 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
                 return View(createRecipeVM);
             }
 
-            // Şəkil yoxlaması
             string? imageUrl = null;
             if (createRecipeVM.Image != null)
             {
@@ -155,7 +163,6 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Update
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
@@ -181,7 +188,6 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
             return View(vm);
         }
 
-        // POST: Update
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(UpdateRecipeVM updateRecipeVM)
@@ -218,7 +224,6 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
                 recipe.DietType = updateRecipeVM.DietType ?? "None";
                 recipe.Cuisine = updateRecipeVM.Cuisine?.Trim();
 
-                // Yeni şəkil yükləndisə
                 if (updateRecipeVM.Image != null)
                 {
                     if (!FileValidator.IsImage(updateRecipeVM.Image))
@@ -233,13 +238,11 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
                         return View(updateRecipeVM);
                     }
 
-                    // Köhnə şəkli sil
                     FileValidator.DeleteFile(recipe.ImageUrl);
 
                     recipe.ImageUrl = await FileValidator.SaveFileAsync(updateRecipeVM.Image, "recipes");
                 }
 
-                // Köhnə ingredient-ləri sil
                 _context.RecipeIngredients.RemoveRange(recipe.RecipeIngredients);
 
                 for (int i = 0; i < updateRecipeVM.IngredientIds.Count; i++)
@@ -263,7 +266,6 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Delete
         [HttpGet]
         [Authorize(Roles = nameof(Roles.Admin))]
         public async Task<IActionResult> Delete(int id)
@@ -276,7 +278,6 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
             return View(recipe);
         }
 
-        // POST: Delete
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
@@ -300,7 +301,6 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // Private helper
         private async Task<List<IngredientOptionVM>> GetAllIngredientsAsync()
         {
             return await _context.Ingredients

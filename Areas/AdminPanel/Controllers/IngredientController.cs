@@ -22,10 +22,17 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var items = await _context.Ingredients
-                .AsNoTracking()
+            var query = _context.Ingredients.AsNoTracking();
+
+            if (!string.IsNullOrWhiteSpace(searchString))
+            {
+                searchString = searchString.Trim().ToLower();
+                query = query.Where(i => i.Name.ToLower().Contains(searchString));
+            }
+
+            var items = await query
                 .OrderBy(i => i.Name)
                 .Select(i => new GetIngredientVM
                 {
@@ -33,6 +40,8 @@ namespace RecipeProject.Areas.AdminPanel.Controllers
                     Name = i.Name
                 })
                 .ToListAsync();
+
+            ViewBag.CurrentSearch = searchString;
 
             return View(items);
         }

@@ -23,6 +23,7 @@ wwwroot\css\font-awesome.min.css
 wwwroot\css\magnific-popup.css
 wwwroot\css\nice-select.min.css
 wwwroot\css\owl.carousel.min.css
+wwwroot\css\site.css
 wwwroot\fonts\classy.eot
 wwwroot\fonts\classy.svg
 wwwroot\fonts\classy.ttf
@@ -93,6 +94,7 @@ wwwroot\img\core-img\pancake.png
 wwwroot\img\core-img\pizza.png
 wwwroot\img\core-img\rib.png
 wwwroot\img\core-img\salad.png
+wwwroot\js\active.js
 wwwroot\js\bootstrap\bootstrap.min.js
 wwwroot\js\bootstrap\popper.min.js
 wwwroot\js\google-map\map-active.js
@@ -189,5 +191,3 @@ wwwroot\uploads\recipes\e700f09c-5108-4536-8532-e6a3496914c2.jpeg
 wwwroot\uploads\recipes\e70e2761-2c27-4c69-be50-41ae72829ed3.jpg
 wwwroot\uploads\recipes\f6a9cbdc-a44e-46ff-90e4-58a9ad451983.jpeg
 wwwroot\uploads\recipes\fd39918d-0929-473f-b27d-826a55bc4cd2.jpg
-wwwroot\css\site.css
-wwwroot\js\active.js

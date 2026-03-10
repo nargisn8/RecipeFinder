@@ -6,10 +6,27 @@
 }
 
 <h2 style="color:black">Recipes</h2>
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; gap: 10px; flex-wrap: wrap;">
+    <div style="display:flex; gap:10px; align-items:center;">
+        <a href="/AdminPanel/Recipe/Create" class="btn btn-peach">Create</a>
 
-<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-    <a href="/AdminPanel/Recipe/Create" class="btn btn-peach">Create</a>
-    <a href="/AdminPanel/Ingredient/Index" class="btn btn-peach" style="background:#fff; border-radius:20px; padding:8px 20px;">
+        <form asp-action="Index" method="get" class="d-flex">
+            <div class="input-group" style="width: 250px;">
+                <input type="text" name="searchString" value="@ViewBag.CurrentSearch"
+                       class="form-control" placeholder="Search recipe..."
+                       style="border-radius: 20px 0 0 20px; border: 1px solid #ddd;">
+                <button type="submit" class="btn btn-peach" style="border-radius: 0 20px 20px 0;">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+            @if (!string.IsNullOrEmpty(ViewBag.CurrentSearch))
+            {
+                <a asp-action="Index" class="btn btn-link text-secondary">Reset</a>
+            }
+        </form>
+    </div>
+
+    <a href="/AdminPanel/Ingredient/Index" class="btn btn-peach" style="background:#fff; border-radius:20px; padding:8px 20px; border: 1px solid #ddd;">
         <i class="fa-solid fa-leaf"></i> Ingredients
     </a>
 </div>
